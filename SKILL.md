@@ -9,7 +9,7 @@ metadata:
     requires:
       bins: ["python3", "curl"]
     triggers: ["docs/", "api-reference/", "platform.", ".txt"]
-    version: "1.2.1"
+    version: "1.2.2"
 ---
 
 # llms-txt-sniffer: The Smart Document Radar
