@@ -1,6 +1,9 @@
 ---
 name: llms-txt-sniffer
 description: A high-performance sniffer for AI-friendly documentation index files (llms.txt). It employs a two-stage discovery strategy—quick direct probing and advanced recursive sniffing—to instantly map documentation sites, reducing token consumption and manual navigation.
+allowed-tools:
+  - Bash(python3:*)
+  - Bash(curl:*)
 metadata:
   openclaw:
     requires:
