@@ -1,27 +1,29 @@
 ---
 name: llms-txt-sniffer
-description: Locate and utilize AI-friendly documentation index files (llms.txt, llms-full.txt) or sitemap.xml. Use when the user provides a documentation URL (containing /docs/, /api-reference/, /guides/, or platform subdomains) to instantly map entire sites, reduce token burn, and bypass heavy HTML/JS noise for more accurate extraction.
-metadata:
-  openclaw:
-    version: "1.3.0"
+description: Locate and utilize AI-friendly documentation index files (llms.txt, llms-full.txt) or sitemap.xml. Use when encountering documentation URLs (containing /docs/, /api-reference/, /guides/, or platform subdomains) to instantly map sites and reduce token burn.
+metadata: {"openclaw": {"requires": {"bins": ["python3", "requests", "curl"]}, "version": "1.2.9"}}
+argument-hint: [url]
+allowed-tools: Bash, Read
 ---
 
 # llms-txt-sniffer: The Smart Document Radar
 
 This skill streamlines documentation ingestion by locating the most AI-optimized version of a site's content.
 
-## Discovery Strategy (Two-Stage)
+## 🧠 Why llms.txt?
+It provides a high-density, Markdown-based index designed for LLMs to map entire sites instantly and save tokens.
 
-### Stage 1: Quick Jump Probes
-Perform two rapid checks using `curl -I` before running complex tools:
-1. **Current Directory**: Probe `${CURRENT_PATH}/llms.txt`.
-2. **Domain Root**: Probe `https://${DOMAIN}/llms.txt`.
+## 🚀 Discovery Strategy (Two-Stage)
 
-### Stage 2: Advanced Sniffing
-If Stage 1 fails, run the specialized sniffer script to handle recursive sub-directories, breadcrumb probing, and sitemap extraction:
-`python3 /root/.openclaw/workspace/skills/llms-txt-sniffer/sniffer.py <URL>`
+### Stage 1: Quick Jump Probes (Instructional)
+1. **Current Directory**: Probe `${CURRENT_PATH}/llms.txt` using `curl -I`.
+2. **Domain Root**: Probe `https://${DOMAIN}/llms.txt` using `curl -I`.
 
-## Behavioral Rules
-- **Switch to High-Speed Mode**: Once an index is found, prioritize reading the index links over individual HTML scraping.
-- **Index Summary**: Always present a brief overview of the detected structure to the user.
-- **Resourceful Fallback**: If `llms.txt` is missing, use the script's `sitemap.xml` results.
+### Stage 2: Advanced Sniffing (Tool-based)
+If Stage 1 fails, run the companion sniffer script located in this skill's directory:
+`python3 sniffer.py $ARGUMENTS`
+
+## 📜 Behavioral Rules
+- **Switch to High-Speed Mode**: Once an index is found, prioritize its links over manual scraping.
+- **Index Summary**: Always present a brief structure overview.
+- **Fallback**: Use `sitemap.xml` parser results if `llms.txt` is missing.
