@@ -1,24 +1,24 @@
 # llms-txt-sniffer
 
-探测文档站点 `llms.txt` 索引文件的 AI 工具，帮助快速定位 AI 友好的文档资源。
+Sniff out `llms.txt` index files on documentation sites. Helps locate AI-friendly documentation resources fast.
 
-## 使用
+## Usage
 
 ```bash
 python3 sniffer.py <URL>
 ```
 
-## 安装
+## Install
 
 ```bash
 clawhub install llms-txt-sniffer
 ```
 
-## 示例
+## Example
 
 ```bash
 python3 sniffer.py https://docs.example.com
 # -> {"found_index": "https://docs.example.com/llms.txt", "type": "llms.txt"}
 ```
 
-> 详细文档：[SKILL.md](./SKILL.md)
+> Full docs: [SKILL.md](./SKILL.md)
